@@ -42,15 +42,17 @@ cloudinary.config({
 let dbConfig = "mysql://avnadmin:AVNS_hIGtTL7FIcfgnW3GFxp@mysql-33ef5455-praveersingh587-6457.c.aivencloud.com:21142/defaultdb";
 
 
-let mySqlVen = mysql2.createConnection(dbConfig);
-mySqlVen.connect(function (errKuch) {
+let mySqlVen = mysql2.createPool(dbConfig);
+console.log("Aiven connected sucessfully");
 
-    if (errKuch == null)
-        console.log("Aiven Connected Successfully");
-    else
-        console.log(errKuch);
+// mySqlVen.connect(function (errKuch) {
 
-})
+//     if (errKuch == null)
+//         console.log("Aiven Connected Successfully");
+//     else
+//         console.log(errKuch);
+
+// })
 
 
 
