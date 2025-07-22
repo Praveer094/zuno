@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+
+
+
+
+    <script>
+
+        var mymodule = angular.module("kuchModule", []);
+
+        mymodule.controller("kuchController", function ($scope, $http) {
+
+            $scope.jsonArray = [];
+
+            $scope.doFetchAll = function () {
+
+
+                var url = "/fetch-users-all";
+
+
+                $http.get(url).then(allGoodFx, someBadFx);
+                function allGoodFx(response) {
+                    //resp in JSON array
+                    // alert(JSON.stringify(response.data));
+                    $scope.jsonArray = response.data;
+                }
+
+                function someBadFx(response) {
+                    alert(JSON.stringify(response.data));
+                }
+            }
+            //----------------------=====================
+            $scope.doBlock = function (emailid) {
+
+                var url = "/block-user?emailid=" + emailid;
+
+                $http.get(url).then(allGoodFx, someBadFx);
+                function allGoodFx(response) {
+                    alert(response.data);//resp in string
+                    $scope.doFetchAll();
+                }
+
+                function someBadFx(response) {
+                    alert(JSON.stringify(response.data));
+                }
+            }
+
+            // ===========================================
+
+
+            $scope.doUNBlock = function (emailid) {
+
+                var url = "/unblock-user?emailid=" + emailid;
+
+                $http.get(url).then(allGoodFx, someBadFx);
+                function allGoodFx(response) {
+                    alert(response.data);//resp in string
+                    $scope.doFetchAll();
+                }
+
+                function someBadFx(response) {
+                    alert(JSON.stringify(response.data));
+                }
+            }
+
+        })
+
+    </script>
+
+
+
+</head>
+
+<body ng-app="kuchModule" ng-controller="kuchController" ng-init="doFetchAll();" style="background-color: thistle;">
+    <center>
+        <span class="btn btn-danger" style="margin-top: 70px; margin-bottom: 20px;">All the Users</span>
+    </center>
+
+    <center>
+        <table width="800" border="1" rules="all">
+            <tr class=" table table-dark">
+                <td class="table-info">Sr No.</td>
+                <td class="table-info">Full Name</td>
+                <td class="table-info">EmailId</td>
+                <td class="table-info">User Type</td>
+                <td class="table-info">Status</td>
+                <td class="table-info">Block User</td>
+                <td class="table-info">UnBlock User</td>
+            </tr>
+
+            <tr ng-repeat="obj in jsonArray">
+                <td color="black">{{$index+1}}</td>
+                <td>{{obj.FullName}}</td>
+                <td>{{obj.emailid}}</td>
+
+                <td>{{obj.usertype}}</td>
+                <td>{{obj.status}}</td>
+                <th>
+                    <button type="button" class="btn btn-dark" ng-click="doBlock(obj.emailid);"
+                        style="float: left; margin: auto;">
+                        <i class="fa-regular fa-circle-xmark fa-shake" style="color: #ffffff;"></i>
+                    </button>
+                    <!-- <input type="button" ng-click="doBlock(obj.emailid);" class="btn btn-dark" value="Block"><i class="fa-solid fa-shield"></i> -->
+                </th>
+
+                <th>
+                    <button type="button" class="btn btn-danger" ng-click="doUNBlock(obj.emailid);"
+                        style="float: left; margin: auto;">
+                        <i class="fa-solid fa-thumbs-up fa-bounce" style="color: #000000;"></i>
+                    </button>
+
+
+                    <!-- <input type="button" ng-click="doUNBlock(obj.emailid);" class="btn btn-primary" value="UnBlock"><i class="fa-solid fa-shield-halved"></i> -->
+                </th>
+
+            </tr>
+        </table>
+    </center>
+
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+    <style>
+        .card{
+            transition: all 0.3s;
+        }
+
+        .card:hover{
+            transform: scale(1.15);
+        }
+    </style>
+
+     <script>
+        function showuser() {
+            let activeUser = localStorage.getItem("activeUser");
+            document.getElementById("welcome").innerHTML = activeUser;
+        }
+
+        function doLogout() {
+            localStorage.removeItem("activeUser");
+            location.href = "index.html";
+        }
+    </script>
+
+<body onload="showuser()">
+
+     <div class="Header">Welcome: <span id="welcome">*</span>
+
+        <button onclick="doLogout()" style="float: right;" class="btn btn-dark"><i class="fa-solid fa-right-from-bracket fa-fade" style="color: #bf0a0a;"></i> Logout</button>
+    </div>
+    
+    
+
+     <div class="card" style="width: 18rem; float: left; margin-left: 20px; margin-top: 30px; " >
+        <img src="pics/16036-bDdKs8N.webp" class="card-img-top" alt="..." style="height: 195px;">
+        <div class="card-body">
+            <h5 class="card-title"><i><b>USER CONSOLE</b></i></h5>
+            <p class="card-text">Clicking on the button below will take you to the USER CONSOLE</p>
+            <a href="admin-user-console.html" class="btn btn-primary">PROFILE</a>
+        </div>
+    </div>
+
+     <div class="card" style="width: 18rem; float: left; margin-left: 20px; margin-top: 30px; " >
+        <img src="pics/brady-pencil-greg-joens.jpg" class="card-img-top" alt="..." style="height: 195px;">
+        <div class="card-body">
+            <h5 class="card-title"><i><b>Player CONSOLE</b></i></h5>
+            <p class="card-text">Clicking on the button below will take you to the Player CONSOLE</p>
+            <a href="admin-user-player-console.html" class="btn btn-primary">PROFILE</a>
+        </div>
+    </div>
+
+     <div class="card" style="width: 18rem; float: left; margin-left: 20px; margin-top: 30px; " >
+        <img src="pics/571130-badass-wallpaper.jpg" class="card-img-top" alt="..." style="height: 195px;">
+        <div class="card-body">
+            <h5 class="card-title"><i><b>Organiser CONSOLE</b></i></h5>
+            <p class="card-text">Clicking on the button below will take you to the Organiser CONSOLE</p>
+            <a href="admin-user-organiser-console.html" class="btn btn-primary">PROFILE</a>
+        </div>
+    </div>
+
+    
+
+</body>
+</html>

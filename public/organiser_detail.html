@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script>
+        function showPrev(fileRef, prevRef) {
+            const [file] = fileRef.files
+            if (file) {
+                prevRef.src = URL.createObjectURL(file)
+            }
+        }
+    </script>
+
+
+
+    <script>
+        $(document).ready(function () {
+
+            // $("#txtSubmit").click(function () {
+
+            //     let obj = {
+            //         type: "GET",
+            //         url: "/fill-orgDeatil",
+            //         data: {
+
+            //             txtEmail: $("#txtEmail").val(),
+            //             txtorgName: $("#txtorgName").val(),
+            //             txtregNo: $("#txtregNo").val(),
+            //             txtcity: $("#txtcity").val(),
+            //             txtAddress: $("#txtAddress").val(),
+            //             txtSports: $("#txtSports").val(),
+            //             txtWebsite: $("#txtWebsite").val(),
+            //             txtInstagram: $("#txtInstagram").val(),
+            //             txtOrgHead: $("#txtOrgHead").val(),
+            //             txtContact: $("#txtContact").val(),
+            //             txtOther: $("#txtOther").val(),
+
+            //         }
+            //     }
+
+
+            //     $.ajax(obj).then(
+            //         function (responseJsonAry) {
+            //             alert(responseJsonAry);
+            //             // console.log("saved");
+
+            //         }).fail(function (err) { alert(err.message) })
+            // })
+
+
+            // ------------------
+
+            $("#btnFetchWithAJAX").click(function () {
+
+                let obj = {
+                    type: "get",
+                    url: "/get-one",
+                    data: {
+                        txtEmail: $("#txtEmailOrg").val()
+                        //txtPwd:$("#txtPwd").val()
+                    }
+                }
+
+
+                $.ajax(obj).then(
+                    function (responseJsonAry) {
+                        //alert(  JSON.stringify(responseJsonAry) )
+                        let orgName = responseJsonAry[0].orgName;
+                        let regNo = responseJsonAry[0].regNo;
+                        let city = responseJsonAry[0].city;
+                        let address = responseJsonAry[0].address;
+                        let sports = responseJsonAry[0].sports;
+                        let website = responseJsonAry[0].website;
+                        let insta = responseJsonAry[0].insta;
+                        let orgHead = responseJsonAry[0].orgHead;
+                        let contact = responseJsonAry[0].contact;
+                        let picurl = responseJsonAry[0].picurl;
+                        let other = responseJsonAry[0].other;
+
+
+                        //  alert +"\n"+pwd+"\n "+picurl);
+
+
+                        $("#txtorgName").val(orgName),
+                            $("#txtregNo").val(regNo),
+                            $("#txtcity").val(city),
+                            $("#txtAddress").val(address),
+                            $("#txtSports").val(sports),
+                            $("#txtWebsite").val(website),
+                            $("#txtInstagram").val(insta),
+                            $("#txtOrgHead").val(orgHead),
+                            $("#txtContact").val(contact),
+                            $("#txtOther").val(other),
+
+
+                            $("#prev").prop("src", picurl);
+                        $("#hdn").val(picurl);
+
+
+
+
+
+                    }).fail(function (err) { alert(err.message) })
+            })
+
+        })
+    </script>
+
+
+
+    <script>
+        function showuser() {
+            let activeUser = localStorage.getItem("activeUser");
+            document.getElementById("txtEmailOrg").value = activeUser;
+            document.getElementById("welcome").innerHTML = activeUser;
+        }
+
+        function doLogout() {
+            localStorage.removeItem("activeUser");
+            location.href = "index.html";
+        }
+    </script>
+
+</head>
+
+<body onload="showuser()" style="background-size: cover;" background="pics/ChatGPT Image Jul 21, 2025, 01_06_56 AM.png">
+
+    <div class="Header d-flex justify-content-between align-items-center"
+        style="font-size: 25px; background-color: transparent; color: black; text-shadow: white 5px 5px 3px; height: 40px;padding: auto; font-style: italic; font-family: 'Times New Roman'; font-weight: bold;">
+        <b>Welcome :</b>
+        <span id="welcome" style="margin-left: -1220px;">*</span>
+
+        <button onclick=" doLogout()" style="float: right;" class="btn btn-dark"><i
+                class="fa-solid fa-right-from-bracket fa-fade" style="color: #bf0a0a;"></i> Logout</button>
+    </div>
+
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center bg-primary text-white">Organization Details Form</h2>
+        <form method="post" action="/fill-orgDeatil" enctype="multipart/form-data">
+
+            <div class="row">
+
+                <div class="mb-3 col-md-6">
+                    <label for="email" class="form-label"><b>Email ID</b></label>
+                    <input type="text" class="form-control" id="txtEmailOrg" name="txtEmailOrg" required readonly>
+                </div>
+                <div class="mb-4 col-md-1 btn btn-dark " style="margin-top: 27px;">
+                    <input type="button" value="Search" id="btnFetchWithAJAX">
+                    <span id="errEmail"></span>
+                </div>
+
+
+                <div class="mb-3 col-md-">
+                    <label for="orgName" class="form-label"><b>Organization Name</b></label>
+                    <input type="text" class="form-control" id="txtorgName" name="txtorgName" required>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="mb-3 col-md-6">
+                    <label for="regNo" class="form-label"><b>Registration Number</b></label>
+                    <input type="text" class="form-control" id="txtregNo" name="txtregNo" required>
+                </div>
+
+
+                <div class="mb-3 col-md-6">
+                    <label for="city" class="form-label"><b>City</b></label>
+                    <input type="text" class="form-control" id="txtcity" name="txtcity">
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="address" class="form-label"><b>Address</b></label>
+                <textarea class="form-control" id="txtAddress" name="txtAddress" rows="2"></textarea>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="sports" class="form-label"><b>Deals in Sports</b></label>
+                <input type="text" name="txtSports" id="txtSports">
+
+            </div>
+
+            <div class="row">
+
+                <div class="mb-3 col-md-6">
+                    <label for="website" class="form-label"><b>Website</b></label>
+                    <input type="url" class="form-control" id="txtWebsite" name="txtWebsite">
+                </div>
+
+
+                <div class="mb-3 col-md-6">
+                    <label for="instagram" class="form-label"><b>Instagram Link</b></label>
+                    <input type="url" class="form-control" id="txtInstagram" name="txtInstagram">
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Org Head -->
+                <div class="mb-3 col-md-6">
+                    <label for="orgHead" class="form-label"><b>Organization Head</b></label>
+                    <input type="text" class="form-control" id="txtOrgHead" name="txtOrgHead">
+                </div>
+
+
+                <div class="mb-3 col-md-6">
+                    <label for="contact" class="form-label"><b>Contact Number</b></label>
+                    <input type="tel" class="form-control" id="txtContact" name="txtContact">
+                </div>
+            </div>
+
+            <!-- Image Upload -->
+            <div class="mb-3">
+                <p>
+                    <b>Upload Profile Pic</b> <br>
+                    <input type="file" name="profilePic" id="profilePic" onchange="showPrev(profilePic,prev)">
+                    <img src="pics/No_Image_Available.jpg" width="300" height="300" id="prev" alt="">
+                </p>
+
+                <input type="hidden" id="hdn" name="hdn">
+            </div>
+
+
+            <div class="mb-3">
+                <label for="other" class="form-label"><b>Other Info</b></label>
+                <textarea class="form-control" id="txtOther" name="txtOther" rows="3"></textarea>
+            </div>
+
+
+            <div class="text-center">
+                <input type="submit" value="SUBMIT" class="btn btn-danger">
+
+                <input type="submit" value="Update" class="btn btn-secondary" style="margin-left: 15px;"
+                    formaction="/update-organiser">
+            </div>
+
+
+        </form>
+    </div>
+
+    <div class="card-footer  border-success text-white text-align" style="background-color: blue;">Footer</div>
+    </div>
+
+
+</body>
+
+</html>
