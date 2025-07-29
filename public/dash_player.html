@@ -53,17 +53,17 @@
 
     </script>
 
-        <style>
-        .card{
+    <style>
+        .card {
             transition: all 0.3s;
         }
 
-        .card:hover{
+        .card:hover {
             transform: scale(1.15);
         }
     </style>
 
-     <script>
+    <script>
         function showuser() {
             let activeUser = localStorage.getItem("activeUser");
             document.getElementById("welcome").innerHTML = activeUser;
@@ -78,41 +78,45 @@
 
 </head>
 
-<body ng-app="kuchModule" ng-controller="kuchController" onload="showuser()">
+<body ng-app="kuchModule" ng-controller="kuchController" onload="showuser()"
+    background="pics/ChatGPT Image Jul 29, 2025, 09_10_35 PM.png">
 
-     <div class="Header">Welcome: <span id="welcome">*</span>
+    <div class="Header d-flex justify-content-between align-items-center"
+        style="font-size: 25px; background-color: transparent; color: black; text-shadow: rgb(0, 0, 0) 5px 5px 5px; height: 40px;padding: auto; font-style: italic; font-family: 'Times New Roman';">
+        Welcome: <span id="welcome" style="margin-left: -1220px;">*</span>
 
-        <button onclick="doLogout()" style="float: right;" class="btn btn-dark"><i class="fa-solid fa-right-from-bracket fa-fade" style="color: #bf0a0a;"></i> Logout</button>
+        <button onclick="doLogout()" style="float: right;" class="btn btn-dark"><i
+                class="fa-solid fa-right-from-bracket fa-fade" style="color: #bf0a0a;"></i> Logout</button>
     </div>
 
     <div class="container d-flex justify-content-center" style=" margin-top: 80px; border: black 2px ;">
 
-    <div class="card" style="width: 18rem; float: left; margin-left: 20px; ">
-        <img src="pics/profile-icon-design-free-vector.jpg" class="card-img-top" alt="..." style="height: 195px;">
-        <div class="card-body">
-            <h5 class="card-title">PROFILE</h5>
-            <p class="card-text">Clicking on the button below will take you to your PROFILE</p>
-            <a href="profile-player.html" class="btn btn-primary">PROFILE</a>
+        <div class="card" style="width: 18rem; float: left; margin-left: 20px; background-color: rgb(174, 169, 169) ">
+            <img src="pics/profile-icon-design-free-vector.jpg" class="card-img-top" alt="..." style="height: 195px;">
+            <div class="card-body">
+                <h5 class="card-title">PROFILE</h5>
+                <p class="card-text">Clicking on the button below will take you to your PROFILE</p>
+                <a href="profile-player.html" class="btn btn-dark">PROFILE</a>
+            </div>
         </div>
-    </div>
-    <div class="card" style="width: 18rem; float: left; margin-left: 20px;">
-        <img src="pics/SportsFacilities04.webp" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">EVENTS</h5>
-            <p class="card-text">Clicking on the button below will take you to your details</p>
-            <a href="tournamentfinder.html" class="btn btn-primary">Explore Events</a>
+        <div class="card" style="width: 18rem; float: left; margin-left: 20px; background-color: rgb(174, 169, 169)">
+            <img src="pics/abstract-and-colorful-brush-background-with-halftone-effect-sport-banner-brush-stroke-illustration-scratch-and-texture-elements-for-design-vector.jpg"
+                class="card-img-top"  style="height: 195px;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">EVENTS</h5>
+                <p class="card-text">Clicking on the button below will take you to your details</p>
+                <a href="tournamentfinder.html" class="btn btn-dark">Explore Events</a>
+            </div>
         </div>
-    </div>
-    <div class="card" style="width: 18rem; float: left; margin-left: 20px;">
-        <img src="pics/iPhone-settings.webp" class="card-img-top" alt="..." style="height: 195px;">
-        <div class="card-body">
-            <h5 class="card-title">SETTINGS</h5>
-            <p class="card-text">Clicking on the button below will take you to Settings</p>
-            <buttontype="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#SettingModal"
-                style="float: left; margin: auto;"><i class="fa-solid fa-gears fa-spin-pulse"
-                    style="color: #000000;"></i>SETTINGS</button>
+        <div class="card" style="width: 18rem; float: left; margin-left: 20px; background-color: rgb(174, 169, 169) ">
+            <img src="pics/iPhone-settings.webp" class="card-img-top" alt="..." style="height: 195px;">
+            <div class="card-body">
+                <h5 class="card-title">SETTINGS</h5>
+                <p class="card-text">Clicking on the button below will take you to Settings</p>
+                <buttontype="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#SettingModal"
+                    style="float: left; margin: auto;">SETTINGS</button>
+            </div>
         </div>
-    </div>
 
     </div>
 
