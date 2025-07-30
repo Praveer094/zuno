@@ -64,6 +64,8 @@
                 $.ajax(obj).then(
                     function (response) {
 
+                        alert();
+
                         if (response == "NoData")
                             alert("Incorrect Email...please Enter correct info");
                         else if (response == "Blocked")
