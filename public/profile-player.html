@@ -97,6 +97,7 @@
         function showuser(){
             let activeUser= localStorage.getItem("activeUser");
             document.getElementById("txtEmail").value=activeUser;
+            document.getElementById("welcome").innerHTML = activeUser;
         }
         function doLogout() {
             localStorage.removeItem("activeUser");
